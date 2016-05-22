@@ -35,7 +35,7 @@ classifiers = [
     QuadraticDiscriminantAnalysis()]
 
 # My data!!
-proposals =pd.read_csv("/Users/jan-philippwolf/Documents/FOREX/JobMastersApplication/Horvath/Case/proposals.csv")
+proposals =pd.read_csv("path.csv")
 proposals.columns=['price', 'rep', 'creationdate', 'decisiondate', 'startdate','status','client']
 psize = proposals['decisiondate'].size
 # cleanup
@@ -79,7 +79,7 @@ for name, clf in zip(names[2:3], classifiers[2:3]):
     clf.fit(X_train, y_train)
     score = clf.score(X_test, y_test)
     print("Score using classifier",names[2:3],"is",score,".")
-
+# just one prediction to test if predict works
 outcome=clf.predict(np.array([40,20,30,82,90]).reshape(1,-1))
 print("Prediction is",outcome)
 
@@ -142,6 +142,7 @@ class SimpleSineApp(server.App):
         y = np.sin(p*x)
         fig = plt.figure()
         splt1 = fig.add_subplot(1,1,1)
+        # color plot red if outcome is negative, green if positive
         if outcome==0:
            splt1.plot(x,y,'r')
         else:
